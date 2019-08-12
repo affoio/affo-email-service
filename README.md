@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/adalekin/affo-email-service.svg?branch=master)](https://travis-ci.org/adalekin/affo-email-service) [![Coverage Status](https://coveralls.io/repos/github/adalekin/affo-email-service/badge.svg?branch=master)](https://coveralls.io/github/adalekin/affo-email-service?branch=master)
+[![Build Status](https://travis-ci.org/affoio/affo-email-service.svg?branch=master)](https://travis-ci.org/affoio/affo-email-service) [![Coverage Status](https://coveralls.io/repos/github/affoio/affo-email-service/badge.svg?branch=master)](https://coveralls.io/github/affoio/affo-email-service?branch=master)
 
 AFFO Email Service
 ==================
