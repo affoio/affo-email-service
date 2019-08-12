@@ -10,6 +10,7 @@ AFFO Email Service
 | **Download** | https://pypi.org/affoio/affo-email-service/   |
 | **Source**   | https://github.com/affoio/affo-email-service/ |
 | **Keywords** | python, email, service                        |
+
 Installation
 ------------
 
