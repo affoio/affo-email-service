@@ -1,0 +1,215 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: Investex Email Service
+
+paths:
+  /message/:
+    post:
+      operationId: affo_email_service.api.message.create
+      tags:
+        - message
+      summary: Sends a message by assembling it from the components.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              x-body-name: message
+              $ref: '#/components/schemas/Message'
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageWithID'
+
+  /template/{template_name}/send/:
+    post:
+      operationId: affo_email_service.api.template.send
+      tags:
+        - template
+      summary: Sends a message built from the specified template.
+      parameters:
+        - in: path
+          name: template_name
+          required: true
+          description: A template name
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              x-body-name: message
+              $ref: '#/components/schemas/TemplateMessage'
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageWithID'
+
+  /unsubscribe/{email}/token/{tag}/:
+    get:
+      operationId: affo_email_service.api.unsubscribe.token
+      tags:
+        - unsubscribe
+      summary: Retreives a token to unsubscribe an email address from the messages with the specified tag.
+      parameters:
+        - in: path
+          name: email
+          required: true
+          description: An email to unsubscribe
+          schema:
+            type: string
+            format: email
+        - in: path
+          name: tag
+          required: true
+          description: A tag to unsubscribe
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+
+servers:
+  - url: /api/v1.0
+
+components:
+  schemas:
+    BaseMessage:
+      type: object
+      required:
+        - from_
+        - to
+        - subject
+      properties:
+        from_:
+          type: string
+          format: email
+          description: Email address for From header.
+        to:
+          type: array
+          description: Email address of the recipient(s).
+          items:
+            type: string
+            format: email
+        cc:
+          type: array
+          description: Same as To but for Cc
+          items:
+            type: string
+            format: email
+          x-nullable: true
+        bcc:
+          type: array
+          description: Same as To but for Bcc
+          items:
+            type: string
+            format: email
+          x-nullable: true
+        subject:
+          type: string
+          description: Message subject
+        tag:
+          type: string
+          description: Tag string.
+          x-nullable: true
+
+    Message:
+      allOf:
+        - $ref: '#/components/schemas/BaseMessage'
+        - type: object
+          required:
+            - html
+            - text
+          properties:
+            text:
+              description: Body of the message. (text version)
+              type: string
+              x-nullable: true
+            html:
+              description: Body of the message. (HTML version)
+              type: string
+              x-nullable: true
+            attachments:
+              description: File attachments
+              type: array
+              items:
+                type: string
+                format: base64
+
+    TemplateMessage:
+      allOf:
+        - $ref: '#/components/schemas/BaseMessage'
+        - type: object
+          properties:
+            variables:
+              description: Template variables
+              type: object
+              additionalProperties: true
+            attachments:
+              description: File attachments
+              type: array
+              items:
+                type: string
+                format: base64
+
+    MessageWithID:
+      allOf:
+        - $ref: '#/components/schemas/BaseMessage'
+        - type: object
+          required:
+            - id
+            - html
+            - text
+            - status
+            - updated_at
+            - created_at
+          properties:
+            id:
+              type: integer
+              description: A message identifier
+            text:
+              type: string
+              description: Body of the message. (text version)
+              nullable: true
+            html:
+              type: string
+              description: Body of the message. (HTML version)
+              nullable: true
+            attachment:
+              type: boolean
+              description: Has a file attachment.
+            status:
+              type: string
+              enum:
+                - NEW
+                - PENDING
+                - FAILED
+                - SUCCEDED
+                - SKIPPED
+                - PARTIALLY_SKIPPED
+              description: A message status
+            updated_at:
+              type: string
+              format: date-time
+              description: A date the message was updated
+            created_at:
+              type: string
+              format: date-time
+              description: A date the message was created
+
+    Token:
+      type: object
+      properties:
+        token:
+          type: string
+          description: A token to unsubscribe

@@ -1,0 +1,14 @@
+[default]
+DEBUG = true
+EMAIL_HOST = "localhost"
+EMAIL_PORT = 25
+
+[development]
+DATABASE_URI = "sqlite://"
+CELERY_BROKER_URL = "memory://"
+CELERY_TASK_ALWAYS_EAGER = true
+CELERY_TASK_EAGER_PROPAGATES = true
+EMAIL_SUPPRESS_SEND = true
+
+[production]
+DEBUG = false

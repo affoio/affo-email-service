@@ -1,0 +1,4 @@
+include CHANGES.md
+include LICENSE
+include README.md
+include config/settings.toml

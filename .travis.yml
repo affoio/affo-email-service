@@ -1,0 +1,45 @@
+sudo: required
+
+services:
+- docker
+
+env:
+  global:
+    IMAGE_NAME: $TRAVIS_REPO_SLUG
+    IMAGE_VERSION: $TRAVIS_TAG
+    DOCKER_USERNAME: adalekin
+    DOCKER_PASSWORD:
+      secure: WY2s2lC5AAs99exm41sfdQTfbcjAMHqCVO2y562pUAukZOE0wudwG05nvXtT4Sw9PTl0JpzEjnrOArJveoKro73z+zOLj7zuTsIjF814sCEl8vyJ1qMK5u6fz3O2G+tuswDD+hLH1QlhhhaUvlaNREaqPzr3/9EVI3UIGhp+R+BnnqqotuEggQeP9k/NnNgxwXlIgDwB6bsrAriCc4sdNtqgFmcrYMa2RYnNo3+0zcbaPTM/T7vHw5F3KXDbUza7rEg/xxq/xiIGJgCuopCzAJaJyaJEJoS1GtssC9afTwoUFN6Ad4JTtGY8UJb6G6xHEtV/qYMJvZ5eZ1nIiFe4Kmh2CLe6nRTw1rb6ppdKi/ToJIbMEhfFABTGsRQUMvFFtD4+Lv1cUfVvdfbjPoUFp8DGNIrpvzlFaOKmhjUdDqz1niscKR2q4dr3lwttKEoDzsL8DNo87+/pf99GEPn9MFEnIlXTvmFWXQdfz06iDUG0ZtrpkDn6QpsHlzC3d2dL+B3hWVXXq4a/ZoMRajSlZXEkqf2rXASq0sbe8q6nAdqT+SVHR3RQCXuieObi7yl//J54LURGQ4LZymzWApzxz7e+iVilDpBtuN0XHKwjEjT4tBFFERFy1sNBfq4uLQpJe1t/+0McR2lNwUWt4iaZOam5g8mXirPflUshnEocXCM=
+language: python
+
+python:
+- '3.6'
+- '3.7'
+
+install:
+- pip install flake8
+- pip install coveralls
+
+script:
+- flake8 .
+- python setup.py test
+
+after_success:
+- coveralls
+
+before_deploy:
+- python setup.py bdist_wheel
+
+deploy:
+- provider: pypi
+  user: adalekin
+  password:
+    secure: MrESXRRxQu1lYQEqip3kg0SC21xp8T7lsLQL1PoNWDHhQqHzH87HDlKzkds3l+cnRPhbt6CMEvJckZLbQVq60Js8arfswBeyRSm72D5P2PR8/DhfAaLW0CbOEc2jtaBxuUi5b3ZpMDSQi7/nZEG4kXoxiv2fznYLqppb118B6/sD9+NHphYIxQYG/G9YW2eVpZmXEl33Ed+GUIuQTsQ6Frij0U7PlsC7Og/0sZd6pzEGFaCqA//EhlDw7V2BU6PqhzXHO9tiL0G9N51iAMlFuc4Vspnsfs92DGqvHYhbLN9QrhX0Fp+1lcxXYyOQJRnyBCXABIK2nzUeXJqONx8aVhNlkBu9eybMagQYhfdHdOWSjGAWgos1vBtR53ft7XN6bF7kZ4IpKmPJ6pWsQ9oOC/oP5TQbERK5UHV2aLYLY/Dl/LmyZl2j6FZUjuF4PJ3q03QJ05SpWHw0MDT9RhfsP7Tuo4FJ0J71u39IYBMOLj1leF8A82/FeaZjBqfvil86OSv1zO/cME8oH+pSXg4sHmUAan6QsvOfqEmd5jzpU3QAadQxdMfdLqIFc8j404swn0cdH7ydEM5dtKpPkkKEw1GBkyxR6HyQF8SF/dJHO9l8nrVT6mikn1ejW9ffZBBuIG3b2lLB1scLVcCr+lktP9TbJ/B4msuwikSW4K7Ji5Y=
+  distributions: sdist bdist_wheel
+  on:
+    tags: true
+    python: 3.6
+
+after_deploy:
+- docker build -t "${IMAGE_NAME}:${IMAGE_VERSION}" .
+- docker push "${IMAGE_NAME}:${IMAGE_VERSION}"
