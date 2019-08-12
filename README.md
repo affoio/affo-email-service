@@ -5,12 +5,11 @@ AFFO Email Service
 
 |              |                                               |
 |--------------|-----------------------------------------------|
-| **Version**  | 1.0.0.dev0                                         |
+| **Version**  | 1.0.0.dev0                                    |
 | **Web**      | https://affo.io/                              |
 | **Download** | https://pypi.org/affoio/affo-email-service/   |
 | **Source**   | https://github.com/affoio/affo-email-service/ |
 | **Keywords** | python, email, service                        |
-
 Installation
 ------------
 
