@@ -7,10 +7,10 @@ from affo_email_service.extensions import db
 from affo_email_service.models.unsubscribe import Unsubscribe
 
 
-unsubscribe_bp = flask.Blueprint('unsubscribe', __name__, url_prefix='/unsubscribe')
+unsubscribe_bp = flask.Blueprint("unsubscribe", __name__, url_prefix="/unsubscribe")
 
 
-@unsubscribe_bp.route('/<token>/')
+@unsubscribe_bp.route("/<token>/")
 def unsubscribe(token):
     safe = itsdangerous.URLSafeTimedSerializer(settings.SECRET_KEY)
 
@@ -21,4 +21,4 @@ def unsubscribe(token):
         unsubscribe_ = Unsubscribe(**token_data)
         db.session.add(unsubscribe_)
 
-    return flask.render_template('unsubscribe.html'), 200
+    return flask.render_template("unsubscribe.html"), 200

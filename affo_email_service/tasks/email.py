@@ -19,7 +19,8 @@ def send_email(message_id):
         subject=message.subject,
         cc=message.cc,
         bcc=message.bcc,
-        html=message.html)
+        html=message.html,
+    )
 
     # FIXME: attachments aren't supported
     mail.send(email)
