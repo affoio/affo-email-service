@@ -24,12 +24,11 @@ except ImportError:
 
 # Upload Sphinx documentation to PyPI (using Sphinx-PyPI-upload)
 # python setup.py build_sphinx
-# updates documentation at http://packages.python.org/tarantool/
+# updates documentation at http://packages.python.org/affo-email-service/
 try:
     from sphinx_pypi_upload import UploadDoc
 
     cmdclass["upload_sphinx"] = UploadDoc
-    command_options["upload_sphinx"] = {"upload_dir": ("setup.py", os.path.join("build", "sphinx", "html"))}
 except ImportError:
     pass
 
@@ -58,7 +57,7 @@ def get_requirements(env=None):
 
 
 install_requirements = get_requirements()
-tests_requirements = get_requirements("test")
+dev_requirements = get_requirements("dev")
 
 setup(
     name="affo-email-service",
@@ -89,6 +88,6 @@ setup(
     command_options=command_options,
     setup_requires=["pytest-runner"],
     install_requires=install_requirements,
-    tests_require=tests_requirements,
+    tests_require=dev_requirements,
     entry_points={"console_scripts": ["affo-email-service = affo_email_service.cli:manager.run"]},
 )
