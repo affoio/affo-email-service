@@ -1,7 +1,4 @@
 bumpversion==0.5.3
-flake8==3.5.0
-flake8-per-file-ignores==0.8.1
-flake8-print==3.1.0
 pytest==5.0.1
 pytest-cov==2.7.1
 pytest-toolbelt==0.1.0

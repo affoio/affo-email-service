@@ -13,11 +13,11 @@ RUN apk add --no-cache  \
 
 RUN pip install --upgrade pip
 
-# Add requirements.txt
-COPY requirements.txt /tmp/
+COPY . /tmp/
 
 RUN pip wheel --wheel-dir=/tmp/wheelhouse -r /tmp/requirements.txt
 RUN pip install --prefix=/install -r /tmp/requirements.txt --no-index --find-links=/tmp/wheelhouse --no-warn-script-location
+RUN pip install --prefix=/install /tmp/ --no-index --find-links=/tmp/wheelhouse --no-warn-script-location
 
 FROM base
 

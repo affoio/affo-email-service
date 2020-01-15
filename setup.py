@@ -57,7 +57,7 @@ def get_requirements(env=None):
 
 
 install_requirements = get_requirements()
-dev_requirements = get_requirements("dev")
+test_requirements = get_requirements("test")
 
 setup(
     name="affo-email-service",
@@ -88,6 +88,7 @@ setup(
     command_options=command_options,
     setup_requires=["pytest-runner"],
     install_requires=install_requirements,
-    tests_require=dev_requirements,
+    tests_require=test_requirements,
+    include_package_data=True,
     entry_points={"console_scripts": ["affo-email-service = affo_email_service.cli:manager.run"]},
 )

@@ -1,36 +1,27 @@
-sudo: required
 dist: xenial
-
 services:
 - docker
-
 env:
   global:
-    - IMAGE_NAME: $TRAVIS_REPO_SLUG
-    - IMAGE_VERSION: $TRAVIS_TAG
-    - secure: "WAzxg6QT1tR/KHb/xu2aNvsta61FoHYwIbB/xqB59QyR3Kctw2V7Tvp5jAbvxmbdrjNu4dA/+sC8ezFHPUOO0v7JD+Did/zL1KuqpC6ZGBfGDkGgu/nS5fIMPNNEAYDgH3BUI0SmOwnj8CyCT0VPr1xcjNpZTx68CC/tp1+MKXm4P64N5uvhcOAC4RoIuIfNcU5EXYRu1fWN5jwpGOye6NQAZGCYnzNDQndPTuAtFvt3ollpQYIg/AlHWR5SOn3s0IpL4rbiMHvsb5wyBLm5PBu+vVguRYEiGswIWNLhJI305dPH6GVMXJmMfetC45b61hcp2ST0O06xYUwWs/BaIM0Z5bdSdyvXTAHhysbjqxyyOs9w6Z73KcgnTDTLJGBa5kRLt/R7YaLFHi32CbfGiTDYVYjjILmCBKF1UawB+AtZuXld0WLt4LmVB7ViVLjjrJeTpvjj56DzZPa6UhSgtv8zI5uKiNPGutxRvUi8moUSJZaO0UCJpqoIwNSh4VSez5TIfH3BKwU+yADjrgQ9rkT/Ebhhv/NLA4hhgcn03H0tye3scQYrr5qiPeuqoyqyqiVs5JJdhMAFqxb/0CJjxCuWHplOuhOZZAR9FCgDxz/WdV1XcgNqsZlRdini/rw+TOF2DRhv+aH/FFEb65MCN/AompyADftw968YQyehmKA="
-    - secure: "FvluU6Ez8ovpfh3baZytmTkBCWnN6Nc5/cnI3/9u1/Am5bMBMOoQlnYYLHoLl4yTtF4/KaDlxwUiWWSJu2kuqd0r03V9OQC9k8uXtqNWVnTYlOg7JbyVd4gFXM8qCG07GiJW8GMWSqKVG67HufBcmb1UdSIvII9X5req3URVkl8jd5CghUzbiNFa7u5zBnApOVPk8HDWNYj0Kel/EzHq/QTg19pR0OcaEVx72HaMrpA61i5ctfsm+3y6S/OkB6B3eKQjXd+KtZ1ah7+2YgEIAdWcvC5jIbPR4cRx21Yd7WLgYgAjXkHINjgih01Lr7Phy/vo39RUVO+6RIgHVWkPASml0BYMloj+a904pOnvpFQZjQN3Trz0q5SJ+FxsW0MQHxJx4F94IOQdoP7lJIEEZkXU80BRrwMPrPEYFhqdCoHpLjQ5fYdeW5opcXcdX/yH+Wtq0RThot84iy4ibatgPwP9/7+pWT9r2UP2byWl6dV1mIzYrAakd++9wb7674N3YTmDadDAHII9O2yI0z2d6CWnlghOzAjUuTVRMHStYu6XngVCt/khS6NgVILeSNswbS4bInibym9TpzzSyTU45EWsO/hBbg9AtemyIrny0wkwKLTptqtgcZLKSaBrLfetvN29i1avb8tC3kO3QYJvlJwY53c9LGo2oDsllY4qBg4="
+  - IMAGE_NAME: "$TRAVIS_REPO_SLUG"
+  - IMAGE_VERSION: "$TRAVIS_TAG"
+  - secure: "WAzxg6QT1tR/KHb/xu2aNvsta61FoHYwIbB/xqB59QyR3Kctw2V7Tvp5jAbvxmbdrjNu4dA/+sC8ezFHPUOO0v7JD+Did/zL1KuqpC6ZGBfGDkGgu/nS5fIMPNNEAYDgH3BUI0SmOwnj8CyCT0VPr1xcjNpZTx68CC/tp1+MKXm4P64N5uvhcOAC4RoIuIfNcU5EXYRu1fWN5jwpGOye6NQAZGCYnzNDQndPTuAtFvt3ollpQYIg/AlHWR5SOn3s0IpL4rbiMHvsb5wyBLm5PBu+vVguRYEiGswIWNLhJI305dPH6GVMXJmMfetC45b61hcp2ST0O06xYUwWs/BaIM0Z5bdSdyvXTAHhysbjqxyyOs9w6Z73KcgnTDTLJGBa5kRLt/R7YaLFHi32CbfGiTDYVYjjILmCBKF1UawB+AtZuXld0WLt4LmVB7ViVLjjrJeTpvjj56DzZPa6UhSgtv8zI5uKiNPGutxRvUi8moUSJZaO0UCJpqoIwNSh4VSez5TIfH3BKwU+yADjrgQ9rkT/Ebhhv/NLA4hhgcn03H0tye3scQYrr5qiPeuqoyqyqiVs5JJdhMAFqxb/0CJjxCuWHplOuhOZZAR9FCgDxz/WdV1XcgNqsZlRdini/rw+TOF2DRhv+aH/FFEb65MCN/AompyADftw968YQyehmKA="
+  - secure: "FvluU6Ez8ovpfh3baZytmTkBCWnN6Nc5/cnI3/9u1/Am5bMBMOoQlnYYLHoLl4yTtF4/KaDlxwUiWWSJu2kuqd0r03V9OQC9k8uXtqNWVnTYlOg7JbyVd4gFXM8qCG07GiJW8GMWSqKVG67HufBcmb1UdSIvII9X5req3URVkl8jd5CghUzbiNFa7u5zBnApOVPk8HDWNYj0Kel/EzHq/QTg19pR0OcaEVx72HaMrpA61i5ctfsm+3y6S/OkB6B3eKQjXd+KtZ1ah7+2YgEIAdWcvC5jIbPR4cRx21Yd7WLgYgAjXkHINjgih01Lr7Phy/vo39RUVO+6RIgHVWkPASml0BYMloj+a904pOnvpFQZjQN3Trz0q5SJ+FxsW0MQHxJx4F94IOQdoP7lJIEEZkXU80BRrwMPrPEYFhqdCoHpLjQ5fYdeW5opcXcdX/yH+Wtq0RThot84iy4ibatgPwP9/7+pWT9r2UP2byWl6dV1mIzYrAakd++9wb7674N3YTmDadDAHII9O2yI0z2d6CWnlghOzAjUuTVRMHStYu6XngVCt/khS6NgVILeSNswbS4bInibym9TpzzSyTU45EWsO/hBbg9AtemyIrny0wkwKLTptqtgcZLKSaBrLfetvN29i1avb8tC3kO3QYJvlJwY53c9LGo2oDsllY4qBg4="
 language: python
-
 python:
 - '3.6'
-
 install:
 - pip install flake8
 - pip install coveralls
-
 script:
 - flake8 .
 - python setup.py test
-
 after_success:
 - coveralls
-
 before_deploy:
 - python setup.py bdist_wheel
-
 deploy:
-- provider: pypi
+  provider: pypi
   user: adalekin
   password:
     secure: MrESXRRxQu1lYQEqip3kg0SC21xp8T7lsLQL1PoNWDHhQqHzH87HDlKzkds3l+cnRPhbt6CMEvJckZLbQVq60Js8arfswBeyRSm72D5P2PR8/DhfAaLW0CbOEc2jtaBxuUi5b3ZpMDSQi7/nZEG4kXoxiv2fznYLqppb118B6/sD9+NHphYIxQYG/G9YW2eVpZmXEl33Ed+GUIuQTsQ6Frij0U7PlsC7Og/0sZd6pzEGFaCqA//EhlDw7V2BU6PqhzXHO9tiL0G9N51iAMlFuc4Vspnsfs92DGqvHYhbLN9QrhX0Fp+1lcxXYyOQJRnyBCXABIK2nzUeXJqONx8aVhNlkBu9eybMagQYhfdHdOWSjGAWgos1vBtR53ft7XN6bF7kZ4IpKmPJ6pWsQ9oOC/oP5TQbERK5UHV2aLYLY/Dl/LmyZl2j6FZUjuF4PJ3q03QJ05SpWHw0MDT9RhfsP7Tuo4FJ0J71u39IYBMOLj1leF8A82/FeaZjBqfvil86OSv1zO/cME8oH+pSXg4sHmUAan6QsvOfqEmd5jzpU3QAadQxdMfdLqIFc8j404swn0cdH7ydEM5dtKpPkkKEw1GBkyxR6HyQF8SF/dJHO9l8nrVT6mikn1ejW9ffZBBuIG3b2lLB1scLVcCr+lktP9TbJ/B4msuwikSW4K7Ji5Y=
@@ -38,7 +29,6 @@ deploy:
   on:
     tags: true
     python: 3.6
-
 after_deploy:
 - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 - docker build -t "${IMAGE_NAME}:${IMAGE_VERSION}" .
