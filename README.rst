@@ -1,4 +1,4 @@
-|Build Status| |Coverage Status| |Code Style|
+|Build Status| |Coverage Status| |Code Style| |License Scan|
 
 AFFO Email Service
 ==================
@@ -34,3 +34,5 @@ folder:
    :target: https://coveralls.io/github/affoio/affo-email-service?branch=master
 .. |Code Style| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
+.. |License Scan| image:: https://app.fossa.com/api/projects/git%2Bgithub.com%2Faffoio%2Faffo-email-service.svg?type=shield
+   :target: https://app.fossa.com/projects/git%2Bgithub.com%2Faffoio%2Faffo-email-service?ref=badge_shield
